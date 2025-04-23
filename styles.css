@@ -1,0 +1,202 @@
+/* Estilos globales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+}
+
+header {
+    background-color: #005f99; /* azul oscuro */
+    padding: 20px;
+    color: white;
+}
+
+.logo {
+    height: 150px; /* aumento de tamaño */
+    width: auto;
+}
+
+nav ul {
+    list-style: none;
+    margin: 15px 0 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a.active,
+nav ul li a:hover {
+    text-decoration: underline;
+    font-size: 1.5em;
+    color: #f8ec45;
+}
+
+.intro {
+    padding: 10px 20px 30px; /* margen más pequeño */
+    background-color: #f8eeb6;
+}
+
+.intro h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: orange;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; /* nueva fuente */
+}
+
+.intro p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: auto;
+    font-weight: bold;
+}
+
+.about-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    text-align: left;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.image {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+
+.text {
+    max-width: 55%;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.formulario-contacto {
+    background-color: #e0f0ff;
+    padding: 40px 20px;
+}
+
+.formulario-contacto h2 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.formulario-contacto form {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+.formulario-contacto input,
+.formulario-contacto textarea {
+    padding: 12px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.formulario-contacto button {
+    padding: 12px;
+    font-size: 1em;
+    background-color: #005f99;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.formulario-contacto button:hover {
+    background-color: #00487a;
+}
+
+.destacados {
+    padding: 40px 20px;
+}
+
+.destacados h2 {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+}
+
+.productos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.producto {
+    width: 200px;
+    text-align: center;
+}
+
+.producto img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: left;
+}
+
+.faq-item {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #e0f0ff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.faq-item h3 {
+    color: #005f99;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+footer {
+    background-color: #005f99; /* azul oscuro */
+    color: white;
+    padding: 15px;
+    margin-top: 50px;
+    font-size: 0.9em;
+}
+
+.content a {
+    display: block;
+    max-width: 40%;
+}
