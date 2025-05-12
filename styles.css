@@ -200,3 +200,40 @@ footer {
     display: block;
     max-width: 40%;
 }
+
+#login-register {
+    font-size: 1em;
+    color: yellow;
+    margin: 0;
+    padding: 0;
+    margin-top: 4px;
+    white-space: nowrap;
+}
+
+#login-register a {
+    color: yellow;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+#login-register a:hover {
+    color: orange;
+}
+#login-container {
+    font-size: 0.7em;
+    color: yellow;
+    margin: 0;
+    padding: 0;
+    margin-top: 4px;
+    white-space: nowrap;
+    text-align: right;
+    align-self: flex-end; /* Clave para empujarlo a la derecha dentro de flex */
+}
+
+
+
+
+
+
+

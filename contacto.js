@@ -6,7 +6,7 @@ document.getElementById("formulario").addEventListener("submit",async function (
         mensaje:document.getElementById("mensaje").value
     };
     try{
-        const response=await fetch('/api/sinusuario/contacto',{
+        const response=await fetch('http://localhost:8080/api/sinusuario/contacto',{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

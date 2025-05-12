@@ -1,40 +1,48 @@
 // src/main/resources/static/login.js
-document.addEventListener('DOMContentLoaded', initLogin);
+document.getElementById("login-container").addEventListener("submit", async function (event) {
+  event.preventDefault();
 
-function initLogin() {
-  // Usuarios de ejemplo
-  const users = {
-    'admin@site.com':     { password: 'admin123',     role: 'admin' },
-    'comprador@site.com': { password: 'comprador123', role: 'comprador' },
-    'vendedor@site.com':  { password: 'vendedor123',  role: 'vendedor' },
+  const credenciales = {
+    email: document.getElementById("login-email").value,
+    password: document.getElementById("login-pass").value
   };
 
-  // Inyectamos el formulario en cada página
-  const container = document.createElement('div');
-  container.id = 'login-container';
-  container.innerHTML = `
-    <input type="email" id="login-email" placeholder="usuario@..." required>
-    <input type="password" id="login-pass" placeholder="contraseña" required>
-    <button id="login-btn">Entrar</button>
-    <p id="login-msg" style="color:red; font-size:0.9em;"></p>
-  `;
-  document.body.appendChild(container);
+  const msg = document.getElementById("login-msg");
 
-  document.getElementById('login-btn').onclick = () => {
-    const email = document.getElementById('login-email').value;
-    const pass  = document.getElementById('login-pass').value;
-    const msg   = document.getElementById('login-msg');
+  try {
+    const response = await fetch('http://localhost:8080/api/login', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(credenciales)
+    });
 
-    if (!users[email] || users[email].password !== pass) {
-      msg.textContent = 'Credenciales incorrectas';
-      return;
+    if (response.ok) {
+      const data = await response.json();
+      const role = data.rol;
+
+      // Redirigir según el rol
+      switch (role) {
+        case 'admin':
+          window.location.href = 'admin.html';
+          break;
+        case 'comprador':
+          window.location.href = 'comprador.html';
+          break;
+        case 'vendedor':
+          window.location.href = 'vendedor.html';
+          break;
+        default:
+          msg.textContent = 'Rol no reconocido';
+      }
+    } else {
+      const error = await response.json();
+      msg.textContent = error.mensaje || "Error en el inicio de sesión";
     }
-    // Redirigir según rol
-    const role = users[email].role;
-    switch (role) {
-      case 'admin':      window.location.href = 'admin.html'; break;
-      case 'comprador':  window.location.href = 'comprador.html'; break;
-      case 'vendedor':   window.location.href = 'vendedor.html'; break;
-    }
-  };
-}
+
+  } catch (error) {
+    console.error("Error al conectar con el servidor:", error);
+    msg.textContent = "Error del servidor. Intente más tarde.";
+  }
+});
