@@ -20,23 +20,20 @@ document.getElementById("login-container").addEventListener("submit", async func
 
     if (response.ok) {
       const data = await response.json();
-      const role = data.rol;
+      const role = data.role; // <- CORREGIDO: era "rol"
 
       // Redirigir según el rol
       switch (role) {
-        case 'admin':
-          window.location.href = 'admin.html';
+        case 'ADMIN':
+          window.location.href = 'administrador.html';
           break;
-        case 'comprador':
-          window.location.href = 'comprador.html';
-          break;
-        case 'vendedor':
-          window.location.href = 'vendedor.html';
+        case 'USUARIO':
+          window.location.href = 'carrito.html'; // O la página que quieras
           break;
         default:
           msg.textContent = 'Rol no reconocido';
       }
-    } else {
+    }else {
       const error = await response.json();
       msg.textContent = error.mensaje || "Error en el inicio de sesión";
     }
