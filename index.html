@@ -8,16 +8,6 @@
 </head>
 <body>
 <header>
-    <form id="login-container">
-        <input type="email" id="login-email" placeholder="usuario@..." required>
-        <input type="password" id="login-pass" placeholder="contraseña" required>
-        <button id="login-btn" type="submit">Entrar</button>
-        <p id="login-msg" style="color:red; font-size:0.9em;"></p>
-        <p id="login-register">
-            ¿Todavía no tienes cuenta? <a href="registro.html">Regístrate</a>.
-        </p>
-
-    </form>
     <h1>
         <a href="index.html">
             <img src="images/logo2.png" alt="VIBEWEAR" class="logo">
@@ -41,25 +31,14 @@
 
 <section class="destacados">
     <h2>Productos Destacados</h2>
-    <div class="productos">
-        <div class="producto">
-            <img src="camiseta1.jpg" alt="Camiseta oversized">
-            <p>Camiseta Oversized Blanca</p>
-        </div>
-        <div class="producto">
-            <img src="pantalon1.jpg" alt="Pantalón jogger">
-            <p>Pantalón Jogger Negro</p>
-        </div>
-        <div class="producto">
-            <img src="chaqueta1.jpg" alt="Chaqueta denim">
-            <p>Chaqueta Denim Azul</p>
-        </div>
-    </div>
+    <div class="productos" id="destacados"></div>
 </section>
 
 <footer>
     <p>&copy; 2025 VIBEWEAR</p>
 </footer>
+
 <script src="login.js"></script>
+<script src="index.js"></script>
 </body>
 </html>
