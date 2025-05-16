@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     totalElem.textContent = "Total: " + total.toFixed(2) + " €";
     contenedor.appendChild(totalElem);
 
-    // Activar botones de eliminar
     document.querySelectorAll(".eliminar").forEach(boton => {
       boton.addEventListener("click", () => {
         const index = boton.getAttribute("data-index");
@@ -41,4 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   renderCarrito();
+
+  document.getElementById("procesar-pago-btn")?.addEventListener("click", () => {
+    alert("Gracias por tu compra");
+    localStorage.removeItem("carrito");
+    location.reload();
+  });
+
 });
