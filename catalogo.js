@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function cargarProductos() {
     try {
       const peticiones = categoriasRopa.map(cat =>
-        fetch(`https://dummyjson.com/products/category/${cat}?limit=100`).then(res => res.json())
+          fetch(`https://dummyjson.com/products/category/${cat}?limit=100`).then(res => res.json())
       );
 
       const respuestas = await Promise.all(peticiones);

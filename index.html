@@ -11,7 +11,7 @@
     <div class="header-top">
 
         <div id="header-left">
-            <a href="registro.html" class="boton-registro">Crear cuenta</a>
+            <a href="registro.html" id= "botonRegistro" class="boton-registro">Crear cuenta</a>
         </div>
 
         <div id="header-center">
@@ -26,6 +26,12 @@
                 <input type="password" id="login-pass" placeholder="contraseña" required>
                 <button id="login-btn" type="submit">Entrar</button>
             </form>
+            <div id="login-msg" class="error-msg"></div>
+            <div id="botones-sesion" style="display: none;">
+                <button class="btn-amarillo" id="btn-carrito">Consultar Carrito</button>
+                <button class="btn-amarillo" id="btn-borrar-cuenta">Borrar Cuenta</button>
+                <button class="btn-amarillo" id="btn-logout">Cerrar Sesión</button>
+            </div>
         </div>
     </div>
 
@@ -33,7 +39,6 @@
         <ul>
             <li><a href="index.html" class="active">Inicio</a></li>
             <li><a href="catalogo.html">Catálogo</a></li>
-            <li><a href="carrito.html">Carrito</a></li>
             <li><a href="contacto.html">Contacto</a></li>
             <li><a href="faq.html">Preguntas Frecuentes</a></li>
         </ul>
@@ -57,8 +62,8 @@
     <p>&copy; 2025 VIBEWEAR</p>
 </footer>
 
+</body>
 <script src="login.js"></script>
 <script src="index.js"></script>
-</body>
 </html>
 

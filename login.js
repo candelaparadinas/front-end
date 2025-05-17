@@ -12,6 +12,7 @@ document.getElementById("login-container").addEventListener("submit", async func
   try {
     const response = await fetch('http://localhost:8080/api/login', {
       method: "POST",
+      credentials:"include",
       headers: {
         "Content-Type": "application/json"
       },
@@ -20,15 +21,16 @@ document.getElementById("login-container").addEventListener("submit", async func
 
     if (response.ok) {
       const data = await response.json();
-      const role = data.role; // <- CORREGIDO: era "rol"
+      const role = data.role;
 
       // Redirigir según el rol
       switch (role) {
         case 'ADMIN':
-          window.location.href = 'administrador.html';
+          localStorage.setItem("role", "ADMIN"); // Guarda el rol en localStorage
+          window.location.href = 'catalogo.html';
           break;
         case 'USUARIO':
-          window.location.href = 'carrito.html'; // O la página que quieras
+          window.location.href = 'carrito.html';
           break;
         default:
           msg.textContent = 'Rol no reconocido';

@@ -570,3 +570,14 @@ html, body {
 main {
   flex: 1;
 }
+.btn-amarillo {
+    background-color: gold;
+    color: black;
+    border: none;
+    padding: 8px 12px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+

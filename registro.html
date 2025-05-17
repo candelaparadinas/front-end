@@ -28,43 +28,44 @@
         <h2>Crear Cuenta</h2>
         <form id="form-registro">
             <div class="form-grupo">
-                <label for="nombre">Nombre completo</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <label for="nombre-registro">Nombre completo</label>
+                <input type="text" id="nombre-registro" name="nombre" required>
             </div>
 
             <div class="form-grupo">
-                <label for="email">Correo electrónico</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email-registro">Correo electrónico</label>
+                <input type="email" id="email-registro" name="email" required>
             </div>
 
             <div class="form-grupo">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" required>
+                <label for="password-registro">Contraseña</label>
+                <input type="password" id="password-registro" name="password" required>
             </div>
 
             <div class="form-grupo">
-                <label for="confirmar">Confirmar contraseña</label>
-                <input type="password" id="confirmar" name="confirmar" required>
+                <label for="confirmar-registro">Confirmar contraseña</label>
+                <input type="password" id="confirmar-registro" name="confirmar" required>
             </div>
 
             <div class="form-grupo">
-                <label for="direccion">Dirección</label>
-                <input type="text" id="direccion" name="direccion">
+                <label for="direccion-registro">Dirección</label>
+                <input type="text" id="direccion-registro" name="direccion">
             </div>
 
             <div class="form-grupo">
-                <label for="telefono">Teléfono</label>
-                <input type="tel" id="telefono" name="telefono">
+                <label for="telefono-registro">Teléfono</label>
+                <input type="tel" id="telefono-registro" name="telefono">
             </div>
 
             <div class="form-grupo">
-                <label for="fecha">Fecha de nacimiento</label>
-                <input type="date" id="fecha" name="fecha">
+                <label for="fecha-registro">Fecha de nacimiento</label>
+                <input type="date" id="fecha-registro" name="fecha">
             </div>
 
             <div class="form-grupo">
                 <button type="submit" class="boton-registro">Registrarse</button>
             </div>
+            <div id="registro-msg" class="error-msg"></div>
         </form>
     </section>
 </main>
@@ -73,37 +74,7 @@
     <p>&copy; 2025 VIBEWEAR</p>
 </footer>
 
-<script>
-    document.getElementById("registro-form").addEventListener("submit", async function (event) {
-      event.preventDefault();
-
-      const datos = {
-        email: document.getElementById("reg-email").value,
-        password: document.getElementById("reg-password").value
-      };
-
-      try {
-        const response = await fetch("http://localhost:8080/api/registro", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(datos)
-        });
-
-        if (response.ok) {
-          alert("¡Usuario registrado con éxito!");
-          window.location.href = "index.html";
-        } else {
-          const error = await response.json();
-          document.getElementById("registro-msg").textContent = error.mensaje || "Error en el registro";
-        }
-      } catch (e) {
-        console.error(e);
-        document.getElementById("registro-msg").textContent = "Error del servidor.";
-      }
-    });
-</script>
 </body>
+<script src="registro.js"></script>
 </html>
 
