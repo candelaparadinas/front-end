@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const productosPorPagina = 9;
   let todosLosProductos = [];
 
-  const categoriasRopa = ["mens-shirts", "mens-shoes", "tops"];
+  const categoriasRopa = ["mens-shirts", "mens-shoes", "tops",  "mens-watches", "womens-dresses", "womens-shoes", "womens-watches", "womens-bags", "womens-jewellery", "sunglasses"];
 
   async function cargarProductos() {
     try {
       const peticiones = categoriasRopa.map(cat =>
-          fetch(`https://dummyjson.com/products/category/${cat}?limit=100`).then(res => res.json())
+        fetch(`https://dummyjson.com/products/category/${cat}?limit=100`).then(res => res.json())
       );
 
       const respuestas = await Promise.all(peticiones);
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function renderProducto(producto) {
+  function renderProducto(producto, index) {
     const card = document.createElement("div");
     card.className = "producto-card";
     card.innerHTML = `
@@ -40,8 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
       botonEliminar.classList.add("eliminar");
 
       botonEliminar.addEventListener("click", (e) => {
-        e.stopPropagation();
-        alert(`Eliminar producto: ${producto.title}`);
+        e.stopPropagation(); // evita que se dispare el click del producto
+        todosLosProductos.splice(index, 1); // elimina el producto
+        renderPagina(paginaActual); // actualiza la vista
       });
 
       card.appendChild(botonEliminar);
@@ -58,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const fin = inicio + productosPorPagina;
     const productosPagina = todosLosProductos.slice(inicio, fin);
 
-    productosPagina.forEach(producto => {
-      contenedor.appendChild(renderProducto(producto));
+    productosPagina.forEach((producto, i) => {
+      contenedor.appendChild(renderProducto(producto, inicio + i));
     });
 
     const rol = localStorage.getItem("role");
@@ -81,7 +82,11 @@ document.addEventListener("DOMContentLoaded", () => {
       nuevaCard.textContent = "+";
 
       nuevaCard.addEventListener("click", () => {
-        alert("Nuevo producto añadido");
+        const productoAleatorio = todosLosProductos[Math.floor(Math.random() * todosLosProductos.length)];
+        if (productoAleatorio) {
+          todosLosProductos.unshift(productoAleatorio); // Añade al inicio
+          renderPagina(paginaActual); // Re-renderiza
+        }
       });
 
       contenedor.appendChild(nuevaCard);

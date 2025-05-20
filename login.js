@@ -1,47 +1,50 @@
-// src/main/resources/static/login.js
-document.getElementById("login-container").addEventListener("submit", async function (event) {
-  event.preventDefault();
-
-  const credenciales = {
-    email: document.getElementById("login-email").value,
-    password: document.getElementById("login-pass").value
-  };
-
+document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById("login-container");
   const msg = document.getElementById("login-msg");
 
-  try {
-    const response = await fetch('http://localhost:8080/api/login', {
-      method: "POST",
-      credentials:"include",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(credenciales)
-    });
+  if (!loginForm) return;
 
-    if (response.ok) {
-      const data = await response.json();
-      const role = data.role;
+  loginForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-      // Redirigir según el rol
-      switch (role) {
-        case 'ADMIN':
-          localStorage.setItem("role", "ADMIN"); // Guarda el rol en localStorage
+    const credenciales = {
+      email: document.getElementById("login-email").value,
+      password: document.getElementById("login-pass").value
+    };
+
+    try {
+      const response = await fetch('http://localhost:8080/api/login', {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(credenciales)
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const role = data.role;
+
+        localStorage.removeItem("role");
+        localStorage.setItem("role", role);
+
+        if (role === 'ADMIN') {
           window.location.href = 'catalogo.html';
-          break;
-        case 'USUARIO':
+        } else if (role === 'USUARIO') {
           window.location.href = 'carrito.html';
-          break;
-        default:
+        } else {
           msg.textContent = 'Rol no reconocido';
-      }
-    }else {
-      const error = await response.json();
-      msg.textContent = error.mensaje || "Error en el inicio de sesión";
-    }
+        }
 
-  } catch (error) {
-    console.error("Error al conectar con el servidor:", error);
-    msg.textContent = "Error del servidor. Intente más tarde.";
-  }
+      } else {
+        const error = await response.json();
+        msg.textContent = error.mensaje || "Error en el inicio de sesión";
+      }
+
+    } catch (error) {
+      console.error("Error al conectar con el servidor:", error);
+      msg.textContent = "Error del servidor. Intente más tarde.";
+    }
+  });
 });
